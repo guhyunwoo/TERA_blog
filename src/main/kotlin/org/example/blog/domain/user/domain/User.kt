@@ -2,23 +2,22 @@ package org.example.blog.domain.user.domain
 
 import jakarta.persistence.*
 import org.example.blog.domain.user.domain.type.Authority
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 
 @Entity
 class User(
     nickname: String,
-    password: String,
+    encodedPassword: String,
     email: String,
     ) {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long? = 0L
+    val user_id: Long? = 0L
 
     @Column(columnDefinition = "VARCHAR(20)", unique = true)
     var nickname: String = nickname
         protected set
 
     @Column(nullable = false)
-    var password: String = BCryptPasswordEncoder().encode(password)
+    var password: String = encodedPassword
         protected set
 
     @Column(columnDefinition = "VARCHAR(40)", nullable = false, unique = true)
@@ -27,5 +26,5 @@ class User(
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    var authority: Authority = Authority.USER
+    var authority: Authority = Authority.ROLE_USER
 }

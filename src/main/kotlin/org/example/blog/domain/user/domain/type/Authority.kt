@@ -1,6 +1,6 @@
 package org.example.blog.domain.user.domain.type
 
 enum class Authority {
-    USER,
-    ADMIN
+    ROLE_USER,
+    ROLE_ADMIN
 }
