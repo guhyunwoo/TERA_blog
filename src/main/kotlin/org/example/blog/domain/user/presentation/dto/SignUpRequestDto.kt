@@ -1,10 +1,7 @@
 package org.example.blog.domain.user.presentation.dto
 
-import sun.security.util.Password
-
 data class SignUpRequestDto(
-    val nickname: nickname,
-    val password: Password,
-) {
-
-}
+    val nickname: String,
+    val password: String,
+    val email: String
+)

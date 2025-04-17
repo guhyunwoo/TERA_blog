@@ -44,7 +44,12 @@ class SecurityConfig(
 
         http
             .authorizeHttpRequests { authorize ->
-                authorize.requestMatchers("/signup").permitAll()
+                authorize.requestMatchers("/user/login").permitAll()
+                authorize.requestMatchers("/user/register").permitAll()
+                authorize.requestMatchers("/user/logout").permitAll()
+
+                authorize.requestMatchers("/post/**").hasAnyRole("USER", "ADMIN")
+                authorize.requestMatchers("/post/delete/force").hasAnyRole("ADMIN")
 
                 authorize.anyRequest().authenticated()
             }

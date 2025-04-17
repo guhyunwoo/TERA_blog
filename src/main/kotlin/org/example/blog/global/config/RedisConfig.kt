@@ -6,17 +6,19 @@ import org.springframework.context.annotation.Configuration
 import org.springframework.data.redis.connection.RedisConnectionFactory
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory
+import org.springframework.data.redis.repository.configuration.EnableRedisRepositories
 
 @Configuration
+@EnableRedisRepositories
 class RedisConfig {
 
-    @Value("\${spring.redis.host}")
+    @Value("\${spring.data.redis.host}")
     lateinit var redisHost: String
 
-    @Value("\${spring.redis.port}")
+    @Value("\${spring.data.redis.port}")
     var redisPort: Int = 0
 
-    @Value("\${spring.redis.password}")
+    @Value("\${spring.data.redis.password}")
     var redisPassword: String? = null
 
     @Bean

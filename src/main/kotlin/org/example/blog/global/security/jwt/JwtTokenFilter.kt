@@ -38,6 +38,7 @@ class JwtTokenFilter(
         )
 
         response.characterEncoding = "UTF-8"
+        response.contentType = "application/json; charset=utf-8"
         response.status = errorCode.status
         response.writer.write(res.toString())
     }

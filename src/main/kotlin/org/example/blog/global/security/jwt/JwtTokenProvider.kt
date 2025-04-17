@@ -78,4 +78,14 @@ class JwtTokenProvider(
             throw InvalidJwtException
         }
     }
+
+    fun getUserEmail(token: String): String {
+        val key = Keys.hmacShaKeyFor(jwtProperties.secretKey.toByteArray())
+        return Jwts.parser()
+            .verifyWith(key)
+            .build()
+            .parseClaimsJws(token)
+            .body
+            .subject
+    }
 }
