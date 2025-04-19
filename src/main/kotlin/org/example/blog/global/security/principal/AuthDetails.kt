@@ -17,6 +17,12 @@ class AuthDetails(
     }
 
     override fun getUsername(): String {
+        return user.nickname
+    }
+
+    fun getUserEmail(): String {
         return user.email
     }
+
+    fun getUser(): User = user
 }

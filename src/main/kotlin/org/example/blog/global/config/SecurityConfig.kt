@@ -44,12 +44,11 @@ class SecurityConfig(
 
         http
             .authorizeHttpRequests { authorize ->
-                authorize.requestMatchers("/user/login").permitAll()
-                authorize.requestMatchers("/user/register").permitAll()
-                authorize.requestMatchers("/user/logout").permitAll()
+                authorize.requestMatchers("/auth/user/login").permitAll()
+                authorize.requestMatchers("/auth/user/signup").permitAll()
+                authorize.requestMatchers("/auth/user/logout").permitAll()
 
-                authorize.requestMatchers("/post/**").hasAnyRole("USER", "ADMIN")
-                authorize.requestMatchers("/post/delete/force").hasAnyRole("ADMIN")
+                authorize.requestMatchers("/posts/**").hasAnyRole("USER", "ADMIN")
 
                 authorize.anyRequest().authenticated()
             }

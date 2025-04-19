@@ -1,4 +1,4 @@
-package org.example.blog.domain.user.presentation.dto
+package org.example.blog.domain.auth.presentation.Dto
 
 data class LoginRequestDto(
     val email: String,

@@ -5,22 +5,22 @@ import io.jsonwebtoken.Jws
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.security.Keys
 import jakarta.servlet.http.HttpServletRequest
-import org.example.blog.domain.auth.domain.RefreshToken
-import org.example.blog.domain.auth.domain.repository.RefreshTokenRepository
 import org.example.blog.global.config.properties.JwtProperties
 import org.example.blog.global.security.jwt.exception.InvalidJwtException
 import org.example.blog.global.security.jwt.exception.ExpiredJwtException
+import org.springframework.data.redis.core.RedisTemplate
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
+import java.time.Duration
 import java.util.*
 
 @Component
 class JwtTokenProvider(
     private val jwtProperties: JwtProperties,
-    private val refreshTokenRepository: RefreshTokenRepository,
-    private val authDetailsService: UserDetailsService
+    private val authDetailsService: UserDetailsService,
+    private val redisTemplate: RedisTemplate<String, String>
 ) {
     private val ACCESS_KEY: String = "access_token"
     private val REFRESH_KEY: String = "refresh_token"
@@ -30,7 +30,10 @@ class JwtTokenProvider(
 
     fun createRefreshToken(email: String): String {
         val token: String = createToken(email, REFRESH_KEY, jwtProperties.refreshTime)
-        refreshTokenRepository.save(RefreshToken(token, email))
+
+        redisTemplate.opsForValue().set(
+            "refresh_token:${email}", token, Duration.ofDays(30)
+        )
         return token
     }
 

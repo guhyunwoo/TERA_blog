@@ -15,6 +15,10 @@ enum class ErrorCode(
     TOKEN_NOT_FOUND(404, "Token Not Found"),
     REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
 
+    //Post
+    POST_NOT_FOUND(404, "Post Not Found"),
+
+    UnauthorizedAccess(409, "UnauthorizedAccess"),
 
 
     // server

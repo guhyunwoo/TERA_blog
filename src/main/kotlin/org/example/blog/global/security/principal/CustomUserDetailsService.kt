@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Service
 
 @Service
-class UserDetailsService(
+class CustomUserDetailsService(
     private val userFacade: UserFacade
 ): UserDetailsService {
     override fun loadUserByUsername(email: String)

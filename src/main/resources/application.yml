@@ -2,6 +2,13 @@ spring:
   application:
     name: blog
 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+      file-size-threshold: 2KB
+
   datasource:
     url: jdbc:mysql://${DB_HOST}/${DB_NAME}
     username: ${DB_USER}
@@ -13,12 +20,19 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
+
   data:
     redis:
       host: localhost
       port: 6379
       password: ""
       timeout: 5000ms
+
+minio:
+  url: ${MINIO_URL}
+  access-key: ${MINIO_ACCESS_KEY}
+  secret-key: ${MINIO_SECRET_KEY}
+  default-bucket: ${BUCKET}
 
 jwt:
   access-time: 3600000
