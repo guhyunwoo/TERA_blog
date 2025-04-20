@@ -97,15 +97,4 @@ class PostService(
 
         postRepository.deleteById(postId)
     }
-
-    @Transactional
-    fun likePost(postId: Long, user: User): {
-        val post = postRepository.findById(postId)
-            .orElseThrow { PostNotFoundException }
-
-        post.addLike()
-        postRepository.save(post)
-
-        return createPostResponseDto(post)
-    }
 }

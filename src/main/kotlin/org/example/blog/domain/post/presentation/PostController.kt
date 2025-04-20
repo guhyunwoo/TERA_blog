@@ -6,7 +6,6 @@ import org.example.blog.domain.post.presentation.dto.request.PostUpdateRequestDt
 import org.example.blog.domain.post.presentation.dto.response.PostResponseDto
 import org.example.blog.domain.post.service.PostService
 import org.example.blog.global.security.principal.AuthDetails
-import org.springframework.data.domain.PageRequest
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
